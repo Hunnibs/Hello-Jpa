@@ -2,6 +2,8 @@ package hellojpa.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
@@ -11,10 +13,14 @@ public class Order {
     @Column(name = "ORDER_ID")
     private Long orderId;
 
-    @Column(name = "MEMBER_ID")
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
     private LocalDateTime orderDate;
     private OrderStatus status;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItemList = new ArrayList<>();
 
     public Long getOrderId() {
         return orderId;
@@ -24,16 +30,16 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
     public LocalDateTime getOrderDate() {
         return orderDate;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public void setOrderDate(LocalDateTime orderDate) {
