@@ -1,6 +1,8 @@
 package hellojpa;
 
 import hellojpa.domain.Member;
+import hellojpa.domain.Order;
+import hellojpa.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,12 +23,15 @@ public class JpaMain {
 //            member.setId(1L);
 //            member.setName("Lee");
 //            em.persist(member);
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                            .getResultList();
+//            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+//                            .getResultList();
+//
+//            for (Member member : result) {
+//                System.out.println("member = " + member.getName());
+//            }
 
-            for (Member member : result) {
-                System.out.println("member = " + member.getName());
-            }
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
 
             tx.commit();
         } catch (Exception e) {
