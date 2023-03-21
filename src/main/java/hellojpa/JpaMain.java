@@ -30,8 +30,6 @@ public class JpaMain {
 //                System.out.println("member = " + member.getName());
 //            }
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
 
             tx.commit();
         } catch (Exception e) {
